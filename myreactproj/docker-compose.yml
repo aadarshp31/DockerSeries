@@ -1,0 +1,13 @@
+version: "3"
+services:
+    dev:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "3000:3000"
+        volumes:
+            # Ignoring 'node_modules' folder from linking to container
+            - /var/myreactapp/node_modules
+            # Linking parent folder to the '/var/myreactapp' folder in the container
+            - .:/var/myreactapp

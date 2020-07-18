@@ -2,7 +2,7 @@
 FROM node:alpine
 
 # setting the working directory
-WORKDIR /var/app
+WORKDIR /var/myreactapp
 
 # copying package.json file only to the container working directory
 COPY ./package.json .
