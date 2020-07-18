@@ -1,0 +1,17 @@
+# setting a baseimage
+FROM node:alpine
+
+# setting the working directory
+WORKDIR /var/app
+
+# copying package.json file only to the container working directory
+COPY ./package.json .
+
+# installing dependecy for the project using package.json file
+RUN npm install
+
+# copying rest of the files to the container
+COPY . .
+
+# setting a default command
+CMD [ "npm", "run", "start"]
