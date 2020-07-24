@@ -11,3 +11,4 @@ services:
             - /var/myreactapp/node_modules
             # Linking parent folder to the '/var/myreactapp' folder in the container
             - .:/var/myreactapp
+        stdin_open: true
