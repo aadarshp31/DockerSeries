@@ -12,3 +12,14 @@ services:
             # Linking parent folder to the '/var/myreactapp' folder in the container
             - .:/var/myreactapp
         stdin_open: true
+
+    test:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            # Ignoring 'node_modules' folder from linking to container
+            - /var/myreactapp/node_modules
+            # Linking parent folder to the '/var/myreactapp' folder in the container
+            - .:/var/myreactapp
+        command: ["npm", "run", "test"]
