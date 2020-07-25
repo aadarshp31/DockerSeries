@@ -21,3 +21,14 @@ RUN npm run build
 
 # The dockerfile code block end when it sees another 'FROM' keyword
 ## END of First block of Dockerfile
+
+## START of Second block of Dockerfile
+FROM nginx as nginx-block
+
+# Exposing port 80 as nginx serves at port 80
+EXPOSE 80
+
+# referencing the first block to access the build folder in the container 'builder-block'.
+COPY --from=builder-block ./var/myreactapp/build ./usr/share/nginx/html
+
+## END of First block of Dockerfile
