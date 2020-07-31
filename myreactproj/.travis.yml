@@ -1,3 +1,7 @@
+    # Docker may require root permission to run some steps hence sudo:required is added
+sudo: required
+
+    # Defining docker service for Travis CI
 services:
     - docker
 
@@ -9,13 +13,13 @@ before_install:
 script:
     - docker run -e CI=true aadarshp31/myreactapp npm run test
 
+    # Phase 3: Stuff you wanna do for deploment
 deploy:
     provider: elasticbeanstalk
-    access_key_id:
-      secure: "Encrypted <access-key-id>="
+    access_key_id: $ACCESS_KEY_ID
     secret_access_key:
-      secure: "Encypted <secret-access-key>="
+      secure: "$SECRET_ACCESS_KEY"
     region: "us-east-1"
-    app: "example-app-name"
-    env: "example-app-environment"
+    app: "reactapp-docker-aws-integration"
+    env: "ReactappDockerAwsIntegration-env"
     bucket_name: "the-target-S3-bucket"
