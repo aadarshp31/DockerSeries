@@ -1,3 +1,14 @@
+services:
+    - docker
+
+    # Phase 1: Stuff we wanna do before install
+before_install:
+    - docker build -t aadarshp31/myreactapp -f Dockerfile.dev .
+
+    # Phase 2: Stuff we wanna do for testing
+script:
+    - docker run -e CI=true aadarshp31/myreactapp npm run test
+
 deploy:
     provider: elasticbeanstalk
     access_key_id:
